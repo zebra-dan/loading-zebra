@@ -1,0 +1,81 @@
+:root { --bg:#f3f6fa; --card:#fff; --fg:#1d1e23; --accent:#7c5cff; color-scheme: light dark; }
+@media (prefers-color-scheme: dark) { :root { --bg:#14151a; --card:#1d1e23; --fg:#f3f6fa; } }
+body { margin:0; background:var(--bg); color:var(--fg); font:16px system-ui, sans-serif; }
+main { max-width:1000px; margin:0 auto; padding:48px 24px; }
+h1 { margin:0 0 4px; } p { opacity:.6; margin:0 0 32px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px; }
+figure { margin:0; background:var(--card); border-radius:16px; padding:28px 12px 16px; text-align:center;
+  box-shadow:0 1px 3px #0002; }
+figcaption { margin-top:20px; font-size:14px; opacity:.8; } figcaption b { opacity:.5; margin-right:4px; }
+
+.stage { margin:0 auto; display:grid; place-items:center; perspective:400px; }
+.z { overflow:visible; fill:none; }
+.z, .p { animation-duration:2s; animation-iteration-count:infinite; animation-timing-function:ease-in-out; }
+.p { fill:var(--fg); transform-box:fill-box; transform-origin:center;
+  animation-delay:calc(var(--i) * .1s); } /* stagger; all pieces rest together at loop end */
+
+/* 1 Flip */ .z1 { animation-name:flip; } @keyframes flip { 60%,100% { transform:rotateY(360deg); } }
+/* 2 Pulse */ .z2 { animation-name:pulse; } @keyframes pulse { 50% { transform:scale(1.2); opacity:.6; } }
+/* 3 Bounce */ .z3 { animation-name:bounce; }
+@keyframes bounce { 35% { transform:translateY(-14px) scaleY(1.05); } 60% { transform:scale(1.1,.9); } 75%,100% { transform:none; } }
+/* 4 Burst */ .z4 .p { animation-name:burst; }
+@keyframes burst { 35% { transform:translate(calc(var(--dx)*.8px), calc(var(--dy)*.8px)) rotate(calc(var(--dx)*3deg)); } 55%,100% { transform:none; } }
+/* 5 Ripple */ .z5 .p { animation-name:ripple; } @keyframes ripple { 25% { opacity:.1; } 55%,100% { opacity:1; } }
+/* 6 Pinwheel */ .z6 .p { animation-name:selfspin; } @keyframes selfspin { 55%,100% { transform:rotate(360deg); } }
+/* 7 Pop-in */ .z7 .p { animation-name:popin; } @keyframes popin { 25% { transform:scale(0); } 55%,100% { transform:scale(1); } }
+/* 8 Slide Wave */ .z8 .p { animation-name:slide; }
+@keyframes slide { 25% { transform:translateY(-10px); } 45% { transform:translateY(6px); } 55%,100% { transform:none; } }
+/* 9 Twirl */ .z9 { animation-name:twirl; transform-origin:50% 50%; } @keyframes twirl { 70%,100% { transform:rotate(360deg); } }
+/* 10 Glitch */ .z10 .p { animation-name:glitch; animation-duration:1.6s; animation-timing-function:steps(1); }
+@keyframes glitch { 10% { transform:translateX(-4px) skewX(10deg); } 20% { transform:translateX(5px); } 30% { transform:translateX(-2px) skewX(-8deg); }
+  40% { transform:translateX(3px); opacity:.4; } 50%,100% { transform:none; opacity:1; } }
+/* 11 Color Sweep */ .z11 .p { animation-name:sweep; } @keyframes sweep { 25% { fill:var(--accent); } 55%,100% { fill:var(--fg); } }
+/* 12 Pendulum */ .z12 { animation-name:swing; transform-origin:50% 0; animation-duration:2.4s; }
+@keyframes swing { 20% { transform:rotate(-18deg); } 45% { transform:rotate(14deg); } 65% { transform:rotate(-6deg); } 80%,100% { transform:none; } }
+/* 13 Heartbeat */ .z13 { animation-name:beat; } @keyframes beat { 10% { transform:scale(1.18); } 20% { transform:none; } 30% { transform:scale(1.18); } 45%,100% { transform:none; } }
+/* 14 Rain */ .z14 .p { animation-name:drop; }
+@keyframes drop { 30% { transform:translateY(50px); opacity:0; } 31% { transform:translateY(-50px); opacity:0; } 55%,100% { transform:none; opacity:1; } }
+/* 15 Spiral */ .z15 .p { animation-name:spiral; transform-box:view-box; }
+@keyframes spiral { 28% { transform:rotate(180deg) scale(.4); } 55%,100% { transform:rotate(360deg) scale(1); } }
+/* 16 Fog */ .z16 { animation-name:fog; } @keyframes fog { 50% { filter:blur(5px); opacity:.4; } }
+/* 17 Rainbow */ .z17 .p { animation-name:rainbow; animation-duration:2.4s; }
+@keyframes rainbow { 10% { fill:#ff5f6d; } 20% { fill:#ffc371; } 30% { fill:#47e891; } 40% { fill:#4facfe; } 50% { fill:#a770ef; } 70%,100% { fill:var(--fg); } }
+/* 18 Card Flip */ .z18 .p { animation-name:flipx; } @keyframes flipx { 55%,100% { transform:rotateX(360deg); } }
+/* 19 Scatter */ .z19 .p { animation-name:scatter; }
+@keyframes scatter { 30% { transform:translate(calc(var(--dx)*-1.5px), calc(var(--dy)*1.5px)) rotate(120deg) scale(.6); } 55%,100% { transform:none; } }
+/* 20 Jelly */ .z20 { animation-name:jelly; }
+@keyframes jelly { 15% { transform:scale(1.25,.75); } 30% { transform:scale(.75,1.25); } 45% { transform:scale(1.15,.85); } 60% { transform:scale(.95,1.05); } 75%,100% { transform:none; } }
+/* 21 Liquid Orbit v2: shrinking, drifting out and orbiting all happen at once from t=0 (no stages) */
+.z21 g { animation:orbit2 4s ease-in-out infinite; transform-box:view-box; transform-origin:50% 50%; }
+.z21 .p { animation:melt2 4s ease-in-out infinite; animation-delay:0s; transform-box:view-box; }
+@keyframes orbit2 { to { transform:rotate(720deg); } }
+@keyframes melt2 { 45%,55% { transform:translateX(16px) scale(.4); } 100% { transform:none; } }
+
+/* 22 Warp: fly toward the viewer, reappear far away and zoom back in */
+.z22 { animation-name:warp; } @keyframes warp { 35% { transform:scale(3.5); opacity:0; } 36% { transform:scale(.2); opacity:0; } 75%,100% { transform:none; opacity:1; } }
+/* 23 Sway */ .z23 { animation-name:sway; animation-duration:2.4s; }
+@keyframes sway { 25% { transform:skewX(-18deg); } 55% { transform:skewX(18deg); } 80%,100% { transform:none; } }
+/* 24 Neon: glowing accent color */ .z24 { animation-name:glow; } .z24 .p { animation-name:neon; }
+@keyframes glow { 50% { filter:drop-shadow(0 0 7px var(--accent)); } 100% { filter:drop-shadow(0 0 0 transparent); } }
+@keyframes neon { 15%,70% { fill:var(--accent); } 100% { fill:var(--fg); } }
+/* 25 Tumble */ .z25 { animation-name:tumble; } @keyframes tumble { 65%,100% { transform:rotateX(360deg); } }
+/* 26 Equalizer: audio-bar bounce */ .z26 .p { animation-name:eq; transform-origin:50% 100%; }
+@keyframes eq { 20% { transform:scaleY(1.25); } 40% { transform:scaleY(.7); } 55%,100% { transform:none; } }
+/* 27 Conveyor: slide off right, re-enter from left */ .z27 .p { animation-name:conveyor; }
+@keyframes conveyor { 30% { transform:translateX(70px); opacity:0; } 31% { transform:translateX(-70px); opacity:0; } 55%,100% { transform:none; opacity:1; } }
+/* 28 Mirror: pieces flip across the center line */ .z28 .p { animation-name:mirror; transform-box:view-box; }
+@keyframes mirror { 25% { transform:scaleX(-1); } 55%,100% { transform:none; } }
+/* 29 Zipper: neighbors slide opposite ways */ .z29 .p { animation-name:zipper; }
+@keyframes zipper { 25% { transform:translateY(calc(var(--k)*9px)); } 45% { transform:translateY(calc(var(--k)*-5px)); } 55%,100% { transform:none; } }
+/* 30 Whirl: pieces circle the center at different speeds, then realign */ .z30 .p { animation-name:whirl; transform-box:view-box; }
+@keyframes whirl { 55%,100% { transform:rotate(calc(var(--k)*360deg)); } }
+
+@media (prefers-reduced-motion: reduce) { .z, .p { animation-duration:6s; } }
+
+.card { color:inherit; text-decoration:none; display:block; border-radius:16px; transition:transform .15s; }
+.card:hover { transform:translateY(-3px); } .card figure { height:100%; box-sizing:border-box; }
+.detail { text-align:center; } .detail > a { display:block; text-align:left; color:var(--accent); }
+.detail h1 b { opacity:.4; } .detail .stage { margin:32px auto; }
+.sizes { display:flex; gap:32px; justify-content:center; align-items:center; margin-bottom:32px; } .sizes .stage { margin:0; }
+.detail nav { display:flex; gap:12px; justify-content:center; }
+.detail button { font:inherit; padding:8px 16px; border-radius:8px; border:1px solid #8884; background:var(--card); color:inherit; cursor:pointer; }
