@@ -74,7 +74,7 @@ figcaption { margin-top:20px; font-size:14px; opacity:.8; } figcaption b { opaci
 
 .card { color:inherit; text-decoration:none; display:block; border-radius:16px; transition:transform .15s; }
 .card:hover { transform:translateY(-3px); } .card figure { height:100%; box-sizing:border-box; }
-.detail { text-align:center; } .detail > a { display:block; text-align:left; color:var(--accent); }
+.detail { text-align:center; } .back { text-align:left; }
 .detail h1 b { opacity:.4; } .detail .stage { margin:32px auto; }
 .sizes { display:flex; gap:32px; justify-content:center; align-items:center; margin-bottom:32px; } .sizes .stage { margin:0; }
 .detail nav { display:flex; gap:12px; justify-content:center; }

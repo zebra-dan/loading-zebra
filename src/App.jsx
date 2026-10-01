@@ -41,7 +41,7 @@ function Detail({ n }) {
   useEffect(() => setHtml(ref.current.firstChild.outerHTML.replace(/></g, '>\n<')), [n])
   return (
     <main className="detail">
-      <a href="#/">← All spinners</a>
+      <div className="back"><zeta-button flavor="outline-subtle" onClick={() => (location.hash = '#/')}>← All spinners</zeta-button></div>
       <h1><b>{String(n).padStart(2, '0')}</b> {NAMES[n - 1]}</h1>
       <div ref={ref}><Zebra variant={n} size={320} /></div>
       <div className="sizes">
