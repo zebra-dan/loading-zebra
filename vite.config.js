@@ -1,2 +1,3 @@
 import react from '@vitejs/plugin-react'
-export default { plugins: [react()] }
+// base './' keeps asset paths relative so it works under /<repo-name>/ on GitHub Pages
+export default { base: './', plugins: [react()] }
