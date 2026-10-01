@@ -15,6 +15,16 @@ export const NAMES = [
   'Slide Wave', 'Twirl', 'Glitch', 'Color Sweep', 'Pendulum', 'Heartbeat',
   'Rain', 'Spiral', 'Fog', 'Rainbow', 'Card Flip', 'Scatter', 'Jelly', 'Liquid Orbit',
   'Warp', 'Sway', 'Neon', 'Tumble', 'Equalizer', 'Conveyor', 'Mirror', 'Zipper', 'Whirl',
+  'Hue Spin', 'Stroke Draw', 'Blueprint', 'Levitate', 'Skew Y', 'Wobble', 'Tilt 3D',
+  'Door Swing', 'Trapdoor', 'Zoom Blur', 'Strobe', 'Retro Shadow', 'Echo', 'RGB Split',
+  'Halo', 'Focus Pull', 'Implode', 'Coin Toss', 'Pinch', 'Roll', 'Hop Skip', 'Square Dance',
+  'Nope', 'Nod', 'Owl', 'Poof', 'Shutters', 'Icicle', 'Blinds', 'Stairs', 'Fan Out',
+  'Accordion', 'Sizes', 'Arc Swing', 'Smudge', 'Checker', 'Flicker', 'Outline Glow',
+  'Palette', 'Fill Up', 'Iris', 'Wipe', 'Lean', 'Tremble', 'Ratchet', 'Tick Tock', 'Yo-yo',
+  'Slingshot', 'Domino', 'Sine Spread', 'Cursor Blink', 'Marching Ants', 'Mobile',
+  'Diagonal Flip', 'Sidestep', 'Popcorn', 'Shatter', 'Bubble Pop', 'Frostbite', 'Lava',
+  'Toxic', 'Gilded', 'Tide', 'Sunset', 'Crawl', 'Zigzag', 'Spin Out', 'Stomp', 'Hologram',
+  'Finale',
 ]
 
 // Gooey filter: blur animates so the head is crisp at rest and merges while moving.
