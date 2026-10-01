@@ -24,7 +24,7 @@ export const NAMES = [
   'Slingshot', 'Domino', 'Sine Spread', 'Cursor Blink', 'Marching Ants', 'Mobile',
   'Diagonal Flip', 'Sidestep', 'Popcorn', 'Shatter', 'Bubble Pop', 'Frostbite', 'Lava',
   'Toxic', 'Gilded', 'Tide', 'Sunset', 'Crawl', 'Zigzag', 'Spin Out', 'Stomp', 'Hologram',
-  'Finale',
+  'Finale', 'Fireworks', 'Progress Bars', 'Droste',
 ]
 
 // Gooey filter: blur animates so the head is crisp at rest and merges while moving.
@@ -48,17 +48,24 @@ function Goo({ id }) {
   )
 }
 
+// Droste: ten flat copies of the head, each .4x the last about the head's center. Flat (not nested) so each level can fade on its own.
+const Nest = () => [...Array(10)].map((_, i) => (
+  <g key={i} className="lv" style={{ '--n': i }} transform={i ? `translate(36 40) scale(${.4 ** i}) translate(-36 -40)` : undefined}>
+    {PIECES.map(([d], j) => <path key={j} className="p" d={d} />)}
+  </g>
+))
+
 export default function Zebra({ variant = 1, size = 96 }) {
   const goo = variant === 21 ? 'goo' : null
   return (
     <div className="stage" style={{ width: size, height: size }}>
       <svg className={`z z${variant}`} viewBox="0 0 72 80" height={size} role="img" aria-label="Loading">
         {goo && <Goo id={goo} />}
-        <g filter={goo ? `url(#${goo})` : undefined}>
+        {variant === 103 ? <g className="r"><Nest /></g> : <g filter={goo ? `url(#${goo})` : undefined}>
           {PIECES.map(([d, dx, dy], i) => (
             <path key={i} className="p" d={d} style={{ '--i': i, '--dx': dx, '--dy': dy, '--k': i % 2 ? -2 : 1 }} />
           ))}
-        </g>
+        </g>}
       </svg>
     </div>
   )

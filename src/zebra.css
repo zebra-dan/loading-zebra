@@ -190,6 +190,27 @@ figcaption { margin-top:20px; font-size:14px; opacity:.8; } figcaption b { opaci
 @keyframes finale { 15% { transform:translate(calc(var(--dx)*1.6px),calc(var(--dy)*1.6px)) rotate(180deg) scale(1.2); fill:hsl(calc(var(--i)*50) 90% 60%); }
   35% { transform:translate(calc(var(--dx)*1.2px),calc(var(--dy)*1.2px)) rotate(360deg); fill:hsl(calc(var(--i)*50 + 120) 90% 60%); } 60%,100% { transform:rotate(720deg); fill:var(--fg); } }
 
+/* 101 Fireworks: pieces launch skyward, burst into colour, fade, then the head re-forms */
+.z101 .p { animation-name:firework; animation-duration:2.6s; animation-timing-function:cubic-bezier(.3,.7,.4,1); }
+@keyframes firework { 20% { transform:translateY(-34px) scale(.35); }
+  32% { transform:translate(calc(var(--dx)*3px), calc(var(--dy)*3px - 34px)) scale(.5); fill:hsl(calc(var(--i)*50) 95% 60%); filter:drop-shadow(0 0 4px currentColor); opacity:1; }
+  48% { transform:translate(calc(var(--dx)*3.6px), calc(var(--dy)*3.6px - 20px)) scale(.2); fill:hsl(calc(var(--i)*50 + 40) 95% 65%); opacity:0; }
+  49% { transform:translateY(30px) scale(.8); opacity:0; fill:var(--fg); filter:none; } 75%,100% { transform:none; opacity:1; } }
+
+/* 102 Progress Bars: each piece is a linear progress bar filling along its own angle, one after another */
+.z102 .p { animation-name:progress; animation-duration:2.4s; animation-timing-function:linear; animation-delay:calc(var(--i) * .12s); --c:cos(var(--a)); --s:sin(var(--a)); }
+.z102 .p:nth-child(1) { --a:90deg; --R:33px; } .z102 .p:nth-child(2) { --a:90deg; --R:16px; } .z102 .p:nth-child(3) { --a:0deg; --R:9px; } .z102 .p:nth-child(4) { --a:60deg; --R:27px; } .z102 .p:nth-child(5) { --a:90deg; --R:8px; } .z102 .p:nth-child(6) { --a:45deg; --R:15px; } .z102 .p:nth-child(7) { --a:45deg; --R:31px; } 
+@keyframes progress { 0% { clip-path:polygon(calc(50% + var(--c)*(var(--R)) - var(--s)*100px) calc(50% + var(--s)*(var(--R)) + var(--c)*100px),calc(50% + var(--c)*(var(--R)) - var(--s)*-100px) calc(50% + var(--s)*(var(--R)) + var(--c)*-100px),calc(50% + var(--c)*(var(--R) - 300px) - var(--s)*-100px) calc(50% + var(--s)*(var(--R) - 300px) + var(--c)*-100px),calc(50% + var(--c)*(var(--R) - 300px) - var(--s)*100px) calc(50% + var(--s)*(var(--R) - 300px) + var(--c)*100px)); fill:var(--fg); } 8% { clip-path:polygon(calc(50% + var(--c)*(-1*var(--R)) - var(--s)*100px) calc(50% + var(--s)*(-1*var(--R)) + var(--c)*100px),calc(50% + var(--c)*(-1*var(--R)) - var(--s)*-100px) calc(50% + var(--s)*(-1*var(--R)) + var(--c)*-100px),calc(50% + var(--c)*(-1*var(--R) - 300px) - var(--s)*-100px) calc(50% + var(--s)*(-1*var(--R) - 300px) + var(--c)*-100px),calc(50% + var(--c)*(-1*var(--R) - 300px) - var(--s)*100px) calc(50% + var(--s)*(-1*var(--R) - 300px) + var(--c)*100px)); fill:var(--accent); }
+  58% { clip-path:polygon(calc(50% + var(--c)*(var(--R)) - var(--s)*100px) calc(50% + var(--s)*(var(--R)) + var(--c)*100px),calc(50% + var(--c)*(var(--R)) - var(--s)*-100px) calc(50% + var(--s)*(var(--R)) + var(--c)*-100px),calc(50% + var(--c)*(var(--R) - 300px) - var(--s)*-100px) calc(50% + var(--s)*(var(--R) - 300px) + var(--c)*-100px),calc(50% + var(--c)*(var(--R) - 300px) - var(--s)*100px) calc(50% + var(--s)*(var(--R) - 300px) + var(--c)*100px)); fill:var(--accent); } 64%,100% { clip-path:polygon(calc(50% + var(--c)*(var(--R)) - var(--s)*100px) calc(50% + var(--s)*(var(--R)) + var(--c)*100px),calc(50% + var(--c)*(var(--R)) - var(--s)*-100px) calc(50% + var(--s)*(var(--R)) + var(--c)*-100px),calc(50% + var(--c)*(var(--R) - 300px) - var(--s)*-100px) calc(50% + var(--s)*(var(--R) - 300px) + var(--c)*-100px),calc(50% + var(--c)*(var(--R) - 300px) - var(--s)*100px) calc(50% + var(--s)*(var(--R) - 300px) + var(--c)*100px)); fill:var(--fg); } }
+
+/* 103 Droste: endless dive. Zoom is exponential (smooth), and each level fades by its own size, so the last frame equals the first */
+@property --t { syntax:'<number>'; inherits:true; initial-value:0; }
+.z103 { overflow:hidden; animation:droste 4s linear infinite; }
+.z103 .r { transform:scale(pow(6.25, var(--t))); transform-box:view-box; transform-origin:36px 40px; }
+.z103 .lv { --s:calc(pow(.4, var(--n)) * pow(6.25, var(--t))); opacity:clamp(0, calc((1.8 - var(--s)) / .8), 1); }
+.z103 .lv:nth-child(even) .p { fill:var(--accent); }
+@keyframes droste { from { --t:0; } to { --t:1; } }
+
 @media (prefers-reduced-motion: reduce) { .z, .p { animation-duration:6s; } }
 
 .card { color:inherit; text-decoration:none; display:block; border-radius:16px; transition:transform .15s; }
