@@ -78,4 +78,6 @@ figcaption { margin-top:20px; font-size:14px; opacity:.8; } figcaption b { opaci
 .detail h1 b { opacity:.4; } .detail .stage { margin:32px auto; }
 .sizes { display:flex; gap:32px; justify-content:center; align-items:center; margin-bottom:32px; } .sizes .stage { margin:0; }
 .detail nav { display:flex; gap:12px; justify-content:center; }
-.detail button { font:inherit; padding:8px 16px; border-radius:8px; border:1px solid #8884; background:var(--card); color:inherit; cursor:pointer; }
+
+.snippet { text-align:left; margin-bottom:24px; } .snippet > div { display:flex; justify-content:space-between; align-items:center; }
+.snippet h2 { font-size:16px; margin:0; } .snippet pre { background:var(--card); border-radius:12px; padding:16px; overflow:auto; max-height:320px; font-size:13px; margin:8px 0 0; }
